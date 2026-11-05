@@ -1,0 +1,42 @@
+======================================================================
+NETFLIX DATA ANALYSIS - BUSINESS INSIGHTS REPORT
+======================================================================
+Analyzed Dataset : data/Dataset.csv
+Total Titles     : 8,790 records
+
+1. Content Type Breakdown (Movies vs. TV Shows):
+   Movies represent 6,126 titles (69.69% of the library),
+   while TV Shows represent 2,664 titles (30.31%).
+   In this dataset, movies outnumber TV shows by more than 2 to 1.
+
+2. Leading Content Producing Countries:
+   After splitting multiple country listings individually, the United States
+   has the highest number of titles with 3,240 entries,
+   followed by India with 1,057 titles and the United Kingdom
+   with 638 titles. India is the largest Asian content
+   provider in the dataset.
+
+3. Complete Content Release Year Trend:
+   The dataset contains content originally released between 1925 and 2021.
+   Across this entire period, the year 2018 has the single highest number of releases
+   with 1,146 titles, followed by 2017 (1,030 titles) and 2019 (1,030 titles).
+   Most content in the catalog was released between 2015 and 2020.
+
+4. Target Audience Age Ratings:
+   The two most frequent ratings are TV-MA (3,205 titles, 36.46%)
+   and TV-14 (2,157 titles, 24.54%).
+   Together, TV-MA and TV-14 make up 61.00% of all titles,
+   showing that the vast majority of Netflix's library is cataloged for teen and mature adult audiences.
+
+5. Top Content Genres:
+   When counting each individual genre, "International Movies" (2,752 appearances),
+   "Dramas" (2,426 appearances), and "Comedies" (1,674 appearances)
+   are the top three genres. "International TV Shows" ranks fourth (1,349 appearances),
+   demonstrating that international titles form a major component of both movies and TV shows.
+
+6. Missing Data and Metadata Observations:
+   In the raw dataset, missing entries were stored with placeholder text 'Not Given'.
+   Specifically, 2,588 titles (29.44%) have no listed director,
+   and 287 titles (3.27%) have no country listed.
+   In contrast, title, content type, release year, rating, and duration have 100% complete records.
+======================================================================

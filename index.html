@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NETFLIX ANALYTICS — Data Analysis Dashboard</title>
+  
+  <!-- Preconnect & Google Fonts (Bebas Neue, Outfit, Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Chart.js for interactive visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- ==================== STICKY NAVBAR ==================== -->
+  <nav class="navbar">
+    <div class="nav-brand" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+      <div class="logo-text">NETFLIX</div>
+      <div class="logo-sub">ANALYTICS</div>
+    </div>
+
+    <div class="nav-links">
+      <button class="nav-btn active" data-target="overview">Overview</button>
+      <button class="nav-btn" data-target="spotlight">Spotlights</button>
+      <button class="nav-btn" data-target="charts">Visual Analytics</button>
+      <button class="nav-btn" data-target="catalog">Catalog Explorer</button>
+      <button class="nav-btn" data-target="insights">Business Insights</button>
+      <button class="nav-btn" data-target="viva">Viva & Evaluation</button>
+    </div>
+
+    <div class="nav-actions">
+      <span class="status-badge">8,790 Records Loaded</span>
+      <button class="btn-primary" id="btnExportCSV">📥 Export CSV</button>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO SPOTLIGHT BANNER ==================== -->
+  <header class="hero-section">
+    <!-- Subtle cinematic Netflix watermark in background -->
+    <div class="hero-watermark">NETFLIX</div>
+
+    <div class="hero-container">
+      <div class="hero-content">
+        <!-- Prominent Netflix Brand Line -->
+        <div class="hero-brand-line">
+          <span class="hero-netflix-badge">NETFLIX</span>
+          <span class="hero-spotlight-pill">FEATURED SPOTLIGHT</span>
+        </div>
+
+        <h1 class="hero-title" id="heroTitle">Stranger Things</h1>
+        
+        <div class="hero-meta">
+          <span class="type-tag-hero" id="heroType">TV SHOW</span>
+          <span>📅 <span id="heroYear">2019</span></span>
+          <span class="rating-badge" id="heroRating">TV-14</span>
+          <span>⏱️ <span id="heroDuration">3 Seasons</span></span>
+          <span>🌍 <span id="heroCountry">United States</span></span>
+          <span>🎭 <span id="heroGenre">TV Horror, TV Sci-Fi</span></span>
+        </div>
+        <p class="hero-desc" id="heroDesc">
+          Explore verified metadata and content distributions across Netflix's worldwide streaming library.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-primary" id="btnHeroDetails">▶ View Movie Details</button>
+          <a href="#spotlight" class="btn-secondary">🌟 Acclaimed Spotlights</a>
+          <a href="#charts" class="btn-secondary">📊 Visual Analytics</a>
+        </div>
+      </div>
+
+      <!-- Hero Featured Poster Card on right -->
+      <div class="hero-poster-card" id="heroPosterCard" title="Click to view details">
+        <img id="heroPosterImg" src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&auto=format&fit=crop&q=80" alt="Spotlight Poster" />
+        <div class="hero-poster-badge">★ TOP NETFLIX PICK</div>
+        <div class="hero-poster-caption">
+          <h4 id="heroPosterTitle">Stranger Things</h4>
+          <span id="heroPosterMeta">2019 • United States</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT CONTAINER ==================== -->
+  <main class="container">
+
+    <!-- SECTION 1: CATALOG OVERVIEW & DATA QUALITY -->
+    <section id="overview" style="scroll-margin-top: 80px;">
+      <div class="section-header">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <h2 class="section-title">Catalog Overview & Core Metrics</h2>
+            <p class="section-sub">High-level key performance indicators, data cleaning verification, and metrics calculated directly from 8,790 verified records.</p>
+          </div>
+          <span class="status-badge">100% Quality Verified</span>
+        </div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon">🎬</div>
+          <div class="kpi-value" id="kpiTotalTitles">8,790</div>
+          <div class="kpi-label">Total Titles</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon">🎥</div>
+          <div class="kpi-value" id="kpiMoviesCount">6,126</div>
+          <div class="kpi-label">Movies (69.7%)</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon">📺</div>
+          <div class="kpi-value" id="kpiTVCount">2,664</div>
+          <div class="kpi-label">TV Shows (30.3%)</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon">🌐</div>
+          <div class="kpi-value" id="kpiCountries">122</div>
+          <div class="kpi-label">Total Countries</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon">🎭</div>
+          <div class="kpi-value" id="kpiTopGenre" style="font-size: 20px;">International Movies</div>
+          <div class="kpi-label">Top Content Genre</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon">🔥</div>
+          <div class="kpi-value" id="kpiPeakYear">2018 (1,146)</div>
+          <div class="kpi-label">Peak Release Year</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: ACCLAIMED SPOTLIGHTS ROW -->
+    <section id="spotlight" class="spotlight-section" style="scroll-margin-top: 80px;">
+      <div class="section-header">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <h2 class="section-title">🌟 Acclaimed & Globally Trending Spotlights</h2>
+            <p class="section-sub">Iconic global titles verified from the dataset with international acclaim and distinct origins.</p>
+          </div>
+          <span class="chart-badge">5 Curated Global Highlights</span>
+        </div>
+      </div>
+
+      <div class="spotlight-grid" id="spotlightGrid">
+        <!-- Rendered dynamically by app.js from verified dataset items -->
+      </div>
+    </section>
+
+    <!-- SECTION 3: INTERACTIVE CHARTS -->
+    <section id="charts" style="scroll-margin-top: 80px;">
+      <div class="section-header">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <h2 class="section-title">📊 Visual Analytics Dashboard</h2>
+            <p class="section-sub">Comprehensive interactive visual analysis exploring content distribution, global production, release trends, genres, and audience age ratings.</p>
+          </div>
+          <span class="chart-badge">6 Interactive Visualizations</span>
+        </div>
+      </div>
+
+      <div class="charts-grid">
+        <!-- Chart 1: Content Type Breakdown -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3 class="chart-title">Movies vs. TV Shows Distribution</h3>
+            <span class="chart-badge">69.7% Movies</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chartContentType"></canvas>
+          </div>
+          <div class="chart-insight-box">
+            <b>Key Finding:</b> Movies (6,126 titles, 69.69%) outnumber TV Shows (2,664 titles, 30.31%) by more than 2 to 1 across the library.
+          </div>
+        </div>
+
+        <!-- Chart 2: Top 10 Countries -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3 class="chart-title">Top 10 Content Producing Countries (Split & Exploded)</h3>
+            <span class="chart-badge">US Leads (3,240)</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chartTopCountries"></canvas>
+          </div>
+          <div class="chart-insight-box">
+            <b>Geographic Finding:</b> After exploding multi-country co-productions, the US leads with 3,240 titles, followed by India (1,057) and the UK (638).
+          </div>
+        </div>
+
+        <!-- Chart 3: Release Year Trend -->
+        <div class="chart-card full-width">
+          <div class="chart-header">
+            <h3 class="chart-title">Content Production & Release Trend (1925 – 2021)</h3>
+            <span class="chart-badge">Peak: 2018 (1,146 Titles)</span>
+          </div>
+          <div class="chart-container" style="height: 350px;">
+            <canvas id="chartReleaseYear"></canvas>
+          </div>
+          <div class="chart-insight-box">
+            <b>Historical Trend:</b> Content releases expanded exponentially between 2015 and 2018, reaching an all-time catalog peak in 2018 with 1,146 releases.
+          </div>
+        </div>
+
+        <!-- Chart 4: Top 10 Genres -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3 class="chart-title">Top 10 Content Genres (Exploded Counts)</h3>
+            <span class="chart-badge">2,752 Int'l Movies</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chartTopGenres"></canvas>
+          </div>
+          <div class="chart-insight-box">
+            <b>Genre Preference:</b> "International Movies" (2,752) and "Dramas" (2,426) are the top genres, followed by Comedies (1,674).
+          </div>
+        </div>
+
+        <!-- Chart 5: Rating Distribution -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3 class="chart-title">Content Rating & Audience Segmentation</h3>
+            <span class="chart-badge">TV-MA Top (36.5%)</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chartRatings"></canvas>
+          </div>
+          <div class="chart-insight-box">
+            <b>Audience Target:</b> TV-MA (3,205 titles) and TV-14 (2,157 titles) make up 61.0% of all titles, focusing predominantly on mature and teen viewers.
+          </div>
+        </div>
+
+        <!-- Chart 6: Comparative Rating Analysis Across Content Types -->
+        <div class="chart-card full-width">
+          <div class="chart-header">
+            <h3 class="chart-title">Comparative Content Ratings: Movies vs. TV Shows</h3>
+            <span class="chart-badge">Comparative Analysis</span>
+          </div>
+          <div class="chart-container" style="height: 340px;">
+            <canvas id="chartRatingsByType"></canvas>
+          </div>
+          <div class="chart-insight-box">
+            <b>Comparative Finding:</b> Movies heavily dominate mature film ratings R (797 vs 2) and PG-13 (490 vs 0), while TV Shows maintain balanced shares in TV-MA (1,143) and TV-14 (730).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: CATALOG EXPLORER (SEARCH & MODAL) -->
+    <section id="catalog" style="scroll-margin-top: 80px;">
+      <div class="section-header">
+        <h2 class="section-title">Interactive Catalog Explorer</h2>
+        <p class="section-sub">Search, filter, and inspect verified titles directly from the dataset without page reloads.</p>
+      </div>
+
+      <!-- Controls Bar -->
+      <div class="explorer-controls">
+        <div class="search-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="catalogSearch" class="search-input" placeholder="Live search by title, director, country, or genre...">
+        </div>
+
+        <div class="filter-group">
+          <button class="pill-btn active" data-type="All">All Types</button>
+          <button class="pill-btn" data-type="Movie">Movies Only</button>
+          <button class="pill-btn" data-type="TV Show">TV Shows Only</button>
+
+          <select id="catalogSort" class="select-custom">
+            <option value="newest">Sort: Newest First</option>
+            <option value="oldest">Sort: Oldest First</option>
+            <option value="alpha">Sort: Title A-Z</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 15px; font-size: 13px; color: var(--text-muted);" id="matchesCount">
+        Showing 1-12 of 8,790 matching titles
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="movie-grid" id="movieGrid">
+        <!-- Rendered dynamically by app.js with rich poster images -->
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <button class="page-btn" id="prevPageBtn">← Previous Page</button>
+        <span class="page-info" id="pageInfo">Page 1 of 733</span>
+        <button class="page-btn" id="nextPageBtn">Next Page →</button>
+      </div>
+    </section>
+
+    <!-- SECTION 5: BUSINESS INSIGHTS -->
+    <section id="insights" style="margin-top: 60px; scroll-margin-top: 80px;">
+      <div class="section-header">
+        <h2 class="section-title">Business Intelligence & Strategic Insights Report</h2>
+        <p class="section-sub">Comprehensive business intelligence report derived strictly from empirical dataset calculations.</p>
+      </div>
+
+      <div class="insights-grid">
+        <div class="insight-card">
+          <h4>1. Movie Dominance Over TV Series</h4>
+          <p>Movies represent <b>6,126 titles (69.69%)</b> compared to <b>2,664 TV Shows (30.31%)</b>. Films outnumber television series by more than 2 to 1 across the library.</p>
+        </div>
+
+        <div class="insight-card">
+          <h4>2. US & India Lead Global Production</h4>
+          <p>After separating co-productions, the United States leads with <b>3,240 titles</b>, followed by India with <b>1,057 titles</b>. India is the largest content provider outside the US and UK.</p>
+        </div>
+
+        <div class="insight-card">
+          <h4>3. 2018 Historical Production Peak</h4>
+          <p>Across the complete 74-year timeline (1925–2021), content releases peaked in <b>2018 with 1,146 titles</b>, followed by 2017 (1,030) and 2019 (1,030).</p>
+        </div>
+
+        <div class="insight-card">
+          <h4>4. Teen & Mature Audience Concentration</h4>
+          <p>The top two ratings are <b>TV-MA (3,205 titles, 36.46%)</b> and <b>TV-14 (2,157 titles, 24.54%)</b>. Combined, they represent over <b>61.00%</b> of all titles.</p>
+        </div>
+
+        <div class="insight-card">
+          <h4>5. Core Storytelling Genres</h4>
+          <p><b>International Movies (2,752)</b> and <b>Dramas (2,426)</b> are the most common genres, followed by Comedies (1,674) and International TV Shows (1,349).</p>
+        </div>
+
+        <div class="insight-card">
+          <h4>6. Metadata Completeness & Quality</h4>
+          <p><b>2,588 titles (29.44%)</b> omit director information (stored as 'Not Given'), primarily among TV shows, while title, type, and release year are 100% complete.</p>
+        </div>
+      </div>
+
+      <div class="recommendations-box">
+        <h3>🎯 Strategic Catalog Recommendations</h3>
+        <ul>
+          <li><b>Expand Episodic Series:</b> While movies drive catalogue volume, episodic TV series drive recurring weekly viewer retention. Expanding TV shows in high-growth markets creates balance.</li>
+          <li><b>Grow Family Offerings:</b> Family & Children programming currently represents a modest portion of the catalog. Expanding TV-PG and TV-Y content widens household subscriber appeal.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECTION 6: INTERNSHIP VIVA & EVALUATION GUIDE -->
+    <section id="viva" style="margin-top: 50px; scroll-margin-top: 80px;">
+      <div class="section-header">
+        <h2 class="section-title">🎓 Internship Viva & Evaluation Guide</h2>
+        <p class="section-sub">Core project methodology, data engineering decisions, and top evaluation questions with model answers.</p>
+      </div>
+
+      <div class="viva-section">
+        <div class="viva-card">
+          <div class="viva-q">Q1: Why did you use explode() on Country and Genre columns?</div>
+          <div class="viva-a"><b>Answer:</b> Titles in Netflix are often co-produced by multiple countries (e.g., "United States, India") or belong to multiple genres (e.g., "Comedies, Dramas"). Splitting by comma and using <code>.explode()</code> counts each individual country and genre participation accurately instead of treating combinations as distinct single entries.</div>
+        </div>
+
+        <div class="viva-card">
+          <div class="viva-q">Q2: Why did you convert 'Not Given' placeholders to NaN instead of dropping rows?</div>
+          <div class="viva-a"><b>Answer:</b> 2,588 titles (nearly 30% of the dataset) did not list a director. If we ran <code>dropna()</code>, we would delete nearly one-third of our valuable data! Replacing 'Not Given' with <code>np.nan</code> allows Pandas to recognize missing data while preserving content type, year, genre, and rating for complete analysis.</div>
+        </div>
+
+        <div class="viva-card">
+          <div class="viva-q">Q3: Why did you preserve titles with duplicate names and types?</div>
+          <div class="viva-a"><b>Answer:</b> While 4 pairs of titles share identical names and types (e.g., "15-Aug", "22-Jul"), each has a distinct <code>show_id</code> and represents a separate catalog entry. Exact full-row duplicates across all columns were 0. We avoid dropping valid records to maintain 100% data fidelity (8,790 titles).</div>
+        </div>
+
+        <div class="viva-card">
+          <div class="viva-q">Q4: Why build an HTML/CSS/JS frontend alongside Python analysis?</div>
+          <div class="viva-a"><b>Answer:</b> Python handles rigorous data cleaning and statistical exports, while an HTML5/CSS3/JavaScript web interface provides an ultra-fast, zero-latency user experience with interactive poster art, instant filtering, and free deployment on GitHub Pages.</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MOVIE DETAIL MODAL POPUP ==================== -->
+  <div class="modal-overlay" id="movieModal">
+    <div class="modal-box">
+      <div class="modal-hero">
+        <img id="modalHeroImg" src="" alt="Movie Poster" />
+        <div class="modal-hero-gradient"></div>
+        <button class="modal-close" id="modalCloseBtn">✕</button>
+        <div class="modal-title-wrap">
+          <span class="type-tag" id="modalType" style="position: static; display: inline-block; margin-bottom: 6px;">Movie</span>
+          <h2 class="modal-title" id="modalTitle">Movie Title</h2>
+        </div>
+      </div>
+
+      <div class="modal-content">
+        <div class="modal-meta-row">
+          <span>📅 <span id="modalYear">2021</span></span>
+          <span class="rating-badge" id="modalRating">TV-MA</span>
+          <span>⏱️ <span id="modalDuration">105 min</span></span>
+        </div>
+
+        <div class="modal-detail-row">
+          <span class="detail-label">Director:</span>
+          <span class="detail-value" id="modalDirector">Director Name</span>
+        </div>
+
+        <div class="modal-detail-row">
+          <span class="detail-label">Country:</span>
+          <span class="detail-value" id="modalCountry">Country</span>
+        </div>
+
+        <div style="margin-top: 14px;">
+          <span class="detail-label">Genres:</span>
+          <div class="genre-tags" id="modalGenres">
+            <!-- Genre pills -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Scroll To Top Button -->
+  <button class="back-to-top" id="backToTopBtn" title="Back to top">↑</button>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <p><b>NETFLIX DATA ANALYSIS PROJECT</b> — Built for Data Analytics Internship Evaluation</p>
+    <p style="color: #666; font-size: 11.5px;">Powered by Python, Pandas, HTML5, CSS3, JavaScript & Chart.js | All metrics calculated from actual Dataset.csv</p>
+  </footer>
+
+  <!-- Data and Application Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
