@@ -157,30 +157,6 @@ python analysis.py
 ```
 This regenerates `cleaned_netflix.csv`, all 6 plots in `results/plots/`, and `business_insights.txt`.
 
----
-
-## 🌐 8. Deploying to Vercel
-
-1. Log in to **[Vercel.com](https://vercel.com)** using your GitHub account.
-2. Click **"Add New..." ➔ "Project"**.
-3. Select this repository: **`netflix_project`**.
-4. In Project Settings:
-   - **Framework Preset**: *Other*
-   - **Root Directory**: `./`
-5. Click **"Deploy"**! In ~15 seconds, your platform will be live globally.
-
----
-
-## 🎓 9. Internship Evaluation & Viva Guide
-
-- **Q1: Why use `.explode()` on Country and Genre columns?**
-  - *Answer:* Titles are frequently co-produced across multiple countries or belong to multiple genres. Splitting by comma and using `.explode()` counts each country and genre participation accurately rather than treating combinations as distinct entries.
-- **Q2: Why convert 'Not Given' placeholders to NaN instead of dropping rows?**
-  - *Answer:* 2,588 titles omitted director information. Using `dropna()` would delete nearly 30% of our dataset. Converting 'Not Given' to `np.nan` preserves content type, release year, genre, and ratings.
-- **Q3: Why preserve titles with duplicate names and types?**
-  - *Answer:* 4 pairs of titles share identical names and types (e.g., "15-Aug", "22-Jul"), but each has a distinct `show_id` and represents a distinct catalog entry. Full-row duplicates across all 10 columns were 0.
-
----
 
 ## 👩‍💻 Author & Acknowledgments
 
