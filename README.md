@@ -166,9 +166,6 @@ Auspify_Data_Analysis_Internship/
 - **Content Type Pie Chart (Actual Python Matplotlib Output)**:  
   ![Task 2 Pie Chart](screenshots/Task_2/content_type_pie_chart.png)
 
-- **Web Dashboard Screenshot Instructions**: Open `Task_2_Content_Type_Analysis/index.html` in your browser and save your screenshot as:  
-  `screenshots/Task_2/content_type_dashboard.png`
-
 ### Task 3 – Country-Wise Netflix Content Analysis
 - **Top 10 Countries by Content Volume (Actual Python Matplotlib Output)**:  
   ![Task 3 Top 10 Countries](screenshots/Task_3/top_10_countries.png)
