@@ -1,0 +1,239 @@
+const CLEANING_RESULTS = {
+  "projectName": "Netflix Data Cleaning & Preparation",
+  "taskName": "Task 1 (Easy) \u2013 Auspify Data Analysis Internship",
+  "author": "Priya Sharma",
+  "datasetSource": "data\\Dataset(1).csv",
+  "originalRows": 8790,
+  "originalCols": 10,
+  "cleanedRows": 8790,
+  "cleanedCols": 10,
+  "exactDuplicates": 0,
+  "duplicateShowIds": 0,
+  "actualNanTotal": 0,
+  "notGivenDirector": 2588,
+  "notGivenCountry": 287,
+  "totalNotGiven": 2875,
+  "moviesCount": 6126,
+  "tvShowsCount": 2664,
+  "invalidDates": 0,
+  "dateMin": "2008-01-01",
+  "dateMax": "2021-09-25",
+  "columns": [
+    "show_id",
+    "type",
+    "title",
+    "director",
+    "country",
+    "date_added",
+    "release_year",
+    "rating",
+    "duration",
+    "listed_in"
+  ],
+  "missingReport": [
+    {
+      "column_name": "show_id",
+      "actual_nan_count": 0,
+      "not_given_count": 0,
+      "total_missing_count": 0,
+      "missing_percentage": 0.0,
+      "data_type": "object"
+    },
+    {
+      "column_name": "type",
+      "actual_nan_count": 0,
+      "not_given_count": 0,
+      "total_missing_count": 0,
+      "missing_percentage": 0.0,
+      "data_type": "object"
+    },
+    {
+      "column_name": "title",
+      "actual_nan_count": 0,
+      "not_given_count": 0,
+      "total_missing_count": 0,
+      "missing_percentage": 0.0,
+      "data_type": "object"
+    },
+    {
+      "column_name": "director",
+      "actual_nan_count": 0,
+      "not_given_count": 2588,
+      "total_missing_count": 2588,
+      "missing_percentage": 29.44,
+      "data_type": "object"
+    },
+    {
+      "column_name": "country",
+      "actual_nan_count": 0,
+      "not_given_count": 287,
+      "total_missing_count": 287,
+      "missing_percentage": 3.27,
+      "data_type": "object"
+    },
+    {
+      "column_name": "date_added",
+      "actual_nan_count": 0,
+      "not_given_count": 0,
+      "total_missing_count": 0,
+      "missing_percentage": 0.0,
+      "data_type": "object"
+    },
+    {
+      "column_name": "release_year",
+      "actual_nan_count": 0,
+      "not_given_count": 0,
+      "total_missing_count": 0,
+      "missing_percentage": 0.0,
+      "data_type": "int64"
+    },
+    {
+      "column_name": "rating",
+      "actual_nan_count": 0,
+      "not_given_count": 0,
+      "total_missing_count": 0,
+      "missing_percentage": 0.0,
+      "data_type": "object"
+    },
+    {
+      "column_name": "duration",
+      "actual_nan_count": 0,
+      "not_given_count": 0,
+      "total_missing_count": 0,
+      "missing_percentage": 0.0,
+      "data_type": "object"
+    },
+    {
+      "column_name": "listed_in",
+      "actual_nan_count": 0,
+      "not_given_count": 0,
+      "total_missing_count": 0,
+      "missing_percentage": 0.0,
+      "data_type": "object"
+    }
+  ],
+  "sampleOriginal": [
+    {
+      "show_id": "s1",
+      "type": "Movie",
+      "title": "Dick Johnson Is Dead",
+      "director": "Kirsten Johnson",
+      "country": "United States",
+      "date_added": "9/25/2021",
+      "release_year": 2020,
+      "rating": "PG-13",
+      "duration": "90 min",
+      "listed_in": "Documentaries"
+    },
+    {
+      "show_id": "s3",
+      "type": "TV Show",
+      "title": "Ganglands",
+      "director": "Julien Leclercq",
+      "country": "France",
+      "date_added": "9/24/2021",
+      "release_year": 2021,
+      "rating": "TV-MA",
+      "duration": "1 Season",
+      "listed_in": "Crime TV Shows, International TV Shows, TV Action & Adventure"
+    },
+    {
+      "show_id": "s6",
+      "type": "TV Show",
+      "title": "Midnight Mass",
+      "director": "Mike Flanagan",
+      "country": "United States",
+      "date_added": "9/24/2021",
+      "release_year": 2021,
+      "rating": "TV-MA",
+      "duration": "1 Season",
+      "listed_in": "TV Dramas, TV Horror, TV Mysteries"
+    },
+    {
+      "show_id": "s14",
+      "type": "Movie",
+      "title": "Confessions of an Invisible Girl",
+      "director": "Bruno Garotti",
+      "country": "Brazil",
+      "date_added": "9/22/2021",
+      "release_year": 2021,
+      "rating": "TV-PG",
+      "duration": "91 min",
+      "listed_in": "Children & Family Movies, Comedies"
+    },
+    {
+      "show_id": "s8",
+      "type": "Movie",
+      "title": "Sankofa",
+      "director": "Haile Gerima",
+      "country": "United States",
+      "date_added": "9/24/2021",
+      "release_year": 1993,
+      "rating": "TV-MA",
+      "duration": "125 min",
+      "listed_in": "Dramas, Independent Movies, International Movies"
+    }
+  ],
+  "sampleCleaned": [
+    {
+      "show_id": "s1",
+      "type": "Movie",
+      "title": "Dick Johnson Is Dead",
+      "director": "Kirsten Johnson",
+      "country": "United States",
+      "date_added": "2021-09-25",
+      "release_year": 2020,
+      "rating": "PG-13",
+      "duration": "90 min",
+      "listed_in": "Documentaries"
+    },
+    {
+      "show_id": "s3",
+      "type": "TV Show",
+      "title": "Ganglands",
+      "director": "Julien Leclercq",
+      "country": "France",
+      "date_added": "2021-09-24",
+      "release_year": 2021,
+      "rating": "TV-MA",
+      "duration": "1 Season",
+      "listed_in": "Crime TV Shows, International TV Shows, TV Action & Adventure"
+    },
+    {
+      "show_id": "s6",
+      "type": "TV Show",
+      "title": "Midnight Mass",
+      "director": "Mike Flanagan",
+      "country": "United States",
+      "date_added": "2021-09-24",
+      "release_year": 2021,
+      "rating": "TV-MA",
+      "duration": "1 Season",
+      "listed_in": "TV Dramas, TV Horror, TV Mysteries"
+    },
+    {
+      "show_id": "s14",
+      "type": "Movie",
+      "title": "Confessions of an Invisible Girl",
+      "director": "Bruno Garotti",
+      "country": "Brazil",
+      "date_added": "2021-09-22",
+      "release_year": 2021,
+      "rating": "TV-PG",
+      "duration": "91 min",
+      "listed_in": "Children & Family Movies, Comedies"
+    },
+    {
+      "show_id": "s8",
+      "type": "Movie",
+      "title": "Sankofa",
+      "director": "Haile Gerima",
+      "country": "United States",
+      "date_added": "2021-09-24",
+      "release_year": 1993,
+      "rating": "TV-MA",
+      "duration": "125 min",
+      "listed_in": "Dramas, Independent Movies, International Movies"
+    }
+  ]
+};

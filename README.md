@@ -1,166 +1,140 @@
-# 🎬 NETFLIX ANALYTICS — Data Analysis & Web Dashboard
+# 🎬 PROJECT 1: Netflix Data Cleaning & Preparation
+### Auspify Data Analysis Using Python Internship — Task 1 (Easy)
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![Pandas](https://img.shields.io/badge/Pandas-Data_Analysis-150458?style=for-the-badge&logo=pandas&logoColor=white)](https://pandas.pydata.org)
-[![Chart.js](https://img.shields.io/badge/Chart.js-Interactive_Charts-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)](https://www.chartjs.org)
-[![HTML5](https://img.shields.io/badge/HTML5-Cinematic_UI-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS3-Netflix_Theme-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![Status](https://img.shields.io/badge/Internship-Verified_Submission-brightgreen?style=for-the-badge)](https://github.com/sharmapriya18504-dotcom/netflix_project)
-
-> A complete, professional Data Analytics internship project analyzing Netflix's catalog of 8,790 movies and TV shows using Python, Pandas, HTML5, CSS3, JavaScript, and interactive Chart.js visualizations.
+[![Pandas](https://img.shields.io/badge/Pandas-Data_Cleaning-150458?style=for-the-badge&logo=pandas&logoColor=white)](https://pandas.pydata.org)
+[![HTML5](https://img.shields.io/badge/HTML5-Modern_UI-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-Netflix_Dark_Theme-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla_ES6-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Status](https://img.shields.io/badge/Internship_Evaluation-Ready-46D369?style=for-the-badge)](https://github.com/sharmapriya18504-dotcom/netflix_project)
 
 ---
 
-## 🖥️ Dashboard Showcase Preview
+## 📌 1. Project Objective
 
-![Netflix Analytics Dashboard Showcase](results/plots/dashboard_showcase.png)
+The goal of this project is to prepare and organize the real **Netflix streaming catalog** (8,790 rows and 10 columns) for business analytics and reporting using **Python** and **Pandas**.
 
----
-
-## 📌 1. Project Introduction
-
-This project was built for a **Data Analytics Internship Program (Auspify Technologies)**. It integrates:
-1. **Python Data Engineering (`analysis.py`)**: Automated data cleaning, duplicate verification, datetime standardization, statistical aggregations, and high-resolution chart exports.
-2. **Interactive Web Dashboard (`index.html`)**: A lightweight client-side analytics platform featuring a signature cinematic Netflix black-and-red design, 6 interactive Chart.js charts, live search & category filters, catalog modal popups, and an internship evaluation viva guide.
+Following strict data ethics and industry standards:
+- **No artificial data generation**: Real dataset characteristics are preserved.
+- **Accurate missing value detection**: Standard `isnull().sum()` shows 0, but 2,875 real records have `"Not Given"` placeholders in `director` and `country`. These are converted to standard `NaN` without deleting genuine catalog records.
+- **Duplicate verification**: Verified that there are 0 exact duplicates and 0 duplicate `show_id` values (100% data preservation).
+- **Standardization**: Text stripped of whitespace, content types standardized (`Movie`, `TV Show`), ratings standardized, and dates converted to ISO `YYYY-MM-DD`.
 
 ---
 
-## 📊 2. Analytical Visualizations & Charts
-
-All visualizations are generated directly from the 8,790 verified records in `data/Dataset.csv`.
-
-### Comparison 1: Content Breakdown & Geographic Leadership
-
-| **Content Type Distribution: Movies vs. TV Shows** | **Top 10 Content-Producing Countries** |
-| :---: | :---: |
-| ![Content Type](results/plots/content_type.png) | ![Top Countries](results/plots/top_countries.png) |
-| **Observation:** Movies represent **6,126 titles (69.69%)**, outnumbering TV Shows (**2,664 titles, 30.31%**) by more than 2 to 1. | **Observation:** Multi-country co-productions were exploded. The United States leads with **3,240 titles**, followed by India with **1,057 titles**. |
-
----
-
-### Comparison 2: Historical Production Timeline & Core Genres
-
-| **Historical Release Year Trend (1925 – 2021)** | **Top 10 Most Common Content Genres** |
-| :---: | :---: |
-| ![Release Year](results/plots/release_year.png) | ![Top Genres](results/plots/top_genres.png) |
-| **Observation:** Content releases expanded exponentially between 2015 and 2018, reaching an all-time catalog peak in **2018 with 1,146 titles**. | **Observation:** **International Movies (2,752)** and **Dramas (2,426)** are the leading genres, followed by Comedies (1,674). |
-
----
-
-### Comparison 3: Content Ratings & Comparative Format Segmentation
-
-| **Content Rating Distribution (Audience Targeting)** | **Comparative Ratings: Movies vs. TV Shows** |
-| :---: | :---: |
-| ![Ratings](results/plots/ratings.png) | ![Ratings by Type](results/plots/ratings_by_type.png) |
-| **Observation:** **TV-MA (3,205 titles, 36.46%)** and **TV-14 (2,157 titles, 24.54%)** make up over **61.0%** of all content. | **Observation:** Movies dominate mature film ratings R (797 vs 2) and PG-13 (490 vs 0), while TV Shows maintain balanced shares in TV-MA and TV-14. |
-
----
-
-## 🎯 3. Core Analytical KPIs
-
-| Metric | Verified Value | Analytical Significance |
-| :--- | :--- | :--- |
-| **Total Catalog Titles** | **8,790** | 100% verified catalog records from `Dataset.csv` |
-| **Movies Count** | **6,126 (69.7%)** | Dominant content type on the platform |
-| **TV Shows Count** | **2,664 (30.3%)** | Episodic content driving viewer retention |
-| **Content Producing Countries** | **122 Countries** | Worldwide international catalog footprint |
-| **Top Content Genre** | **International Movies (2,752)** | Highlights global localization strategy |
-| **Historical Peak Release Year** | **2018 (1,146 Titles)** | Peak content acquisition and release period |
-
----
-
-## 🎨 4. Netflix Cinematic Design System
-
-- **Main Background**: `#141414` (Deep Cinematic Netflix Black)
-- **Header & Navbar**: `#0B0B0B` (Dark Charcoal with Glassmorphism Blur)
-- **Brand Accent**: `#E50914` (Signature Netflix Crimson Red)
-- **Cards**: `#1C1C1C` with `#303030` subtle borders and red glow hover effects
-- **Typography**:
-  - **Bebas Neue**: Logo, badge emblems, and rank tags
-  - **Outfit (700, 800, 900)**: Bold geometric headings, KPI numbers, and titles
-  - **Inter (500, 600)**: Crisp body text with high contrast
-
----
-
-## 🌟 5. Unique Web Features
-
-1. **Cinematic Hero Spotlight Banner**: Features highlighted titles with prominent Netflix branding, metadata badges, and interactive details modal.
-2. **Top 5 Global Spotlights Row**: Displays iconic global hits (*Squid Game*, *Stranger Things*, *The Crown*, *Sacred Games*, *Our Planet*) with rich poster thumbnails.
-3. **Interactive Catalog Explorer**:
-   - **Live Search**: Instant zero-lag filtering by title, director, country, or genre.
-   - **Type Filter Pills**: Switch between `All Types`, `Movies Only`, and `TV Shows Only`.
-   - **Dynamic Sorting**: Sort by newest, oldest, or alphabetical order.
-   - **Smooth Pagination**: Clean navigation showing 12 titles per page across 733 pages.
-4. **Netflix-Style Movie Detail Modal**: Frosted glass popup displaying director, country, release year, duration, rating, and clickable genre tags.
-5. **CSV Export Button**: Download catalog data directly as a CSV file in browser.
-6. **Internship Viva Mode**: Built-in guide covering project methodology and top evaluation questions with model answers.
-
----
-
-## 📁 6. Project Structure
+## 📁 2. Project Folder Structure
 
 ```text
-Netflix_Data_Analysis_Internship/
+Netflix_Data_Cleaning/
 │
 ├── data/
-│   └── Dataset.csv               # Original raw Netflix dataset (preserved untouched)
+│   ├── Dataset(1).csv               # Original raw dataset (8,790 rows, 10 columns)
+│   └── Dataset.csv                  # Dataset alias for compatibility
 │
-├── results/
-│   ├── cleaned_netflix.csv       # Cleaned dataset (8,790 records)
-│   ├── business_insights.txt     # Factual business insights report
-│   └── plots/                    # High-res static PNG charts & showcase
-│       ├── dashboard_showcase.png    # 2x3 Dashboard collage preview
-│       ├── content_type.png          # Content type breakdown
-│       ├── top_countries.png         # Top 10 producing countries
-│       ├── release_year.png          # Release year timeline
-│       ├── top_genres.png            # Top 10 genres
-│       ├── ratings.png               # Content rating distribution
-│       └── ratings_by_type.png       # Comparative ratings (Movies vs TV Shows)
+├── output/
+│   ├── cleaned_netflix_dataset.csv  # Standardized, cleaned dataset ready for analysis
+│   ├── missing_values_report.csv    # Column-by-column missing/placeholder metrics
+│   └── cleaning_summary.txt         # Executive cleaning summary & audit log
 │
-├── index.html                    # ⭐ Main Web Dashboard (HTML5)
+├── reports/
+│   ├── cleaning_results.json        # Machine-readable cleaning metrics
+│   └── cleaning_results.js          # Direct client-side JavaScript result export
 │
-├── style.css                     # ⭐ Custom Netflix Stylesheet
-│
-├── app.js                        # ⭐ Interactive Logic, Search, Modals & Chart.js
-│
-├── data.js                       # ⭐ Verified dataset export (8,790 records)
-│
-├── analysis.py                   # Automated Python analysis script
-│
-├── requirements.txt              # Python dependencies
-│
-├── .gitignore                    # Excludes virtual environments and cache
-│
-└── README.md                     # Documentation & evaluation guide
+├── cleaning.py                      # Beginner-friendly procedural Python cleaning script
+├── index.html                       # Netflix-inspired interactive project report web UI
+├── style.css                        # Cinematic dark theme styling (#141414, #E50914)
+├── script.js                        # Dynamic table rendering and CSV download triggers
+├── requirements.txt                 # Core dependencies (pandas, numpy, matplotlib)
+└── README.md                        # Complete project documentation & viva guide
 ```
 
 ---
 
-## 🚀 7. How to Run Locally
+## 📊 3. Dataset Characteristics & Cleaning Summary
 
-### Method 1: Direct Double-Click (Easiest & Fastest)
-1. Navigate to the project directory:
-   `c:\Users\Priya Sharma\Netflix_Data_Analysis_Internship`
-2. Double-click **`index.html`**.
-3. It will immediately open in your default browser (Chrome, Edge, Firefox, Brave) — **no installation or server needed!**
+| Column Name | Raw Data Type | Cleaned Data Type | Actual NaN | "Not Given" Count | Missing % | Action Taken |
+| :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| `show_id` | object | object | 0 | 0 | 0.00% | Verified 100% unique primary keys |
+| `type` | object | object | 0 | 0 | 0.00% | Standardized to 'Movie' & 'TV Show' |
+| `title` | object | object | 0 | 0 | 0.00% | Stripped leading/trailing whitespace |
+| `director` | object | object | 0 | **2,588** | **29.44%** | Converted `"Not Given"` ➔ `np.nan` (Rows preserved) |
+| `country` | object | object | 0 | **287** | **3.27%** | Converted `"Not Given"` ➔ `np.nan` (Rows preserved) |
+| `date_added` | object | datetime64[ns] | 0 | 0 | 0.00% | Converted from `M/D/YYYY` to `YYYY-MM-DD` |
+| `release_year` | int64 | int64 | 0 | 0 | 0.00% | Verified range: 1925 to 2021 |
+| `rating` | object | object | 0 | 0 | 0.00% | Standardized uppercase whitespace |
+| `duration` | object | object | 0 | 0 | 0.00% | Preserved duration units (`min`, `Season(s)`) |
+| `listed_in` | object | object | 0 | 0 | 0.00% | Stripped text whitespace |
 
-### Method 2: Python HTTP Server
+### Key Metrics
+- **Initial Catalog Rows**: 8,790
+- **Final Cleaned Rows**: 8,790 (100% data retention)
+- **Duplicate Rows Found & Removed**: 0
+- **Total Missing Placeholders Handled**: 2,875 (`director`: 2,588, `country`: 287)
+- **Content Breakdown**: 6,126 Movies (69.69%) and 2,664 TV Shows (30.31%)
+
+---
+
+## 🚀 4. How to Run the Project
+
+### Prerequisites
+Make sure Python 3.8+ is installed.
+
+### Step 1: Install Dependencies
 ```bash
-# In the project root directory:
-python -m http.server 8000
+pip install -r requirements.txt
 ```
-Open **`http://localhost:8000`** in your browser.
 
-### Method 3: Run Python Analysis Script
+### Step 2: Run the Cleaning Script
 ```bash
-python analysis.py
+python cleaning.py
 ```
-This regenerates `cleaned_netflix.csv`, all 6 plots in `results/plots/`, and `business_insights.txt`.
+*The script will read the raw dataset, run all 5 cleaning steps, display the results in the terminal, and generate all output files in `output/` and `reports/`.*
 
+### Step 3: Open the Web Dashboard
+You can open `index.html` in your browser directly:
+- **Option A (Direct)**: Double-click `index.html` in File Explorer.
+- **Option B (Python Local Server)**:
+  ```bash
+  python -m http.server 8000
+  ```
+  Then visit `http://localhost:8000` in your browser.
 
-## 👩‍💻 Author & Acknowledgments
+---
 
-- **Intern**: Priya Sharma
-- **Email**: sharmapriya18504@gmail.com
-- **Repository**: [https://github.com/sharmapriya18504-dotcom/netflix_project](https://github.com/sharmapriya18504-dotcom/netflix_project)
-- **Internship Program**: Auspify Technologies — Data Analysis Using Python
+## 🎨 5. Web Dashboard Highlights
+
+The frontend (`index.html`) is designed with a **Netflix Cinematic Dark UI**:
+- **Palette**: Deep Black (`#141414`), Netflix Red (`#E50914`), Card Surface (`#1C1C1C`), and Crisp White (`#FFFFFF`).
+- **Dynamic KPI Cards**: Displays real rows, columns, placeholder counts, and duplicates dynamically populated from `cleaning_results.js`.
+- **5-Step Workflow Tracker**: Visual completion badges for each cleaning step.
+- **Data Quality Report Table**: Features visual percentage progress bars for missing values.
+- **Before & After Record Comparison**: Inspects sample records side-by-side to highlight whitespace and date standardization.
+- **Download Center**: One-click download buttons for:
+  - `cleaned_netflix_dataset.csv`
+  - `missing_values_report.csv`
+  - `cleaning_summary.txt`
+- **Internship Evaluation & Viva Guide**: Curated questions and student-friendly answers for project presentation.
+
+---
+
+## 🎓 6. Internship Viva Q&A (Quick Reference)
+
+### Q1: Why did `df.isnull().sum()` show 0 missing values initially?
+**Answer**: Because the dataset creator used the text string `"Not Given"` instead of empty cells or standard `NaN`. Python string functions treat `"Not Given"` as a valid string. We identified this by inspecting distinct text values and replaced `"Not Given"` with `np.nan`.
+
+### Q2: Why didn't you drop rows with missing director or country?
+**Answer**: Dropping them would remove 2,588 titles (over 29% of the dataset!). The missing director does not affect the title, release year, genre, or duration. Dropping rows unnecessarily creates severe selection bias.
+
+### Q3: How did you verify duplicates?
+**Answer**: We checked both whole-row duplicates using `df.duplicated().sum()` (which returned 0) and primary key uniqueness using `df['show_id'].duplicated().sum()` (which returned 0). All 8,790 records are distinct.
+
+### Q4: Why convert `date_added` into a `datetime` format?
+**Answer**: In the raw dataset, dates are stored as raw strings (e.g., `9/25/2021`). Converting them with `pd.to_datetime()` enables sorting chronologically, time-series analysis, and extracting release month/year easily in Pandas or visualization tools.
+
+---
+
+## 👩‍💻 Author & Acknowledgements
+- **Author**: Priya Sharma
+- **Role**: Data Analytics Intern
+- **Program**: Auspify Data Analysis Using Python Internship (Task 1 — Easy)
+- **License**: MIT

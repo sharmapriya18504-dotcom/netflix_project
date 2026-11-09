@@ -1,0 +1,11 @@
+column_name,actual_nan_count,not_given_count,total_missing_count,missing_percentage,data_type
+show_id,0,0,0,0.0,object
+type,0,0,0,0.0,object
+title,0,0,0,0.0,object
+director,0,2588,2588,29.44,object
+country,0,287,287,3.27,object
+date_added,0,0,0,0.0,object
+release_year,0,0,0,0.0,int64
+rating,0,0,0,0.0,object
+duration,0,0,0,0.0,object
+listed_in,0,0,0,0.0,object
