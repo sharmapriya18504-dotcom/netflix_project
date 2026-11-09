@@ -173,9 +173,6 @@ Auspify_Data_Analysis_Internship/
 - **Movies vs TV Shows by Country (Actual Python Matplotlib Output)**:  
   ![Task 3 Country Type Breakdown](screenshots/Task_3/country_type_breakdown.png)
 
-- **Web Dashboard Screenshot Instructions**: Open `Task_3_Country_Wise_Analysis/index.html` in your browser and save your screenshot as:  
-  `screenshots/Task_3/country_analysis_dashboard.png`
-
 ### Task 4 – Trend Analysis by Release Year
 - **Yearly Content Distribution Trend (Actual Python Matplotlib Output)**:  
   ![Task 4 Yearly Content Trend](screenshots/Task_4/yearly_content_trend.png)
