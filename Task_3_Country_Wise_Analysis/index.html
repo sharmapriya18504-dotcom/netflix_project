@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix Country-Wise Content Analysis — Task 3 (Medium)</title>
+
+  <!-- Google Fonts & Chart.js -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar">
+    <div class="nav-brand" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+      <div class="logo-text">NETFLIX</div>
+      <div class="logo-sub">COUNTRY-WISE ANALYSIS</div>
+    </div>
+
+    <div class="nav-links">
+      <a href="#overview" class="nav-btn">Overview</a>
+      <a href="#statistics" class="nav-btn">Statistics</a>
+      <a href="#top10" class="nav-btn">Top 10</a>
+      <a href="#comparison" class="nav-btn">Charts</a>
+      <a href="#types" class="nav-btn">Format by Country</a>
+      <a href="#insights" class="nav-btn">Insights</a>
+      <a href="#downloads" class="nav-btn">Downloads</a>
+    </div>
+
+    <div class="nav-badge">
+      <span>Task 3 — Medium</span>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO HEADER ==================== -->
+  <header class="hero-header">
+    <span class="hero-tag">AUSPIFY INTERNSHIP • TASK 03</span>
+    <h1 class="hero-title">Netflix Country-Wise Content Analysis</h1>
+    <p class="hero-desc">
+      A geographical evaluation of Netflix catalogue content availability across different countries. Features multi-country explosion, top content contributor rankings, and country-level Movie vs TV Show format breakdowns.
+    </p>
+    <div class="hero-actions">
+      <a href="#top10" class="btn-primary">🌍 View Top 10 Countries</a>
+      <a href="#downloads" class="btn-secondary">📥 Download Country CSVs</a>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTAINER ==================== -->
+  <main class="container">
+
+    <!-- 1. PROJECT OVERVIEW -->
+    <section class="section-block" id="overview">
+      <div class="section-head">
+        <h2 class="section-title">Project Overview</h2>
+        <p class="section-sub">Analytical methodology, co-production explosion, and country identification.</p>
+      </div>
+
+      <div class="overview-grid">
+        <div class="overview-card">
+          <h3>🎯 Core Objective</h3>
+          <p>
+            Analyze Netflix catalogue content availability by country. Properly split multi-country co-productions (e.g. <code>"United States, India"</code>) using Pandas <code>explode()</code> so every participating country is accurately accounted for.
+          </p>
+        </div>
+        <div class="overview-card">
+          <h3>🛡️ Data Integrity Ethics</h3>
+          <p>
+            We do not claim a country "produced" Netflix content; rather, this indicates <i>Netflix catalogue content associated with that country</i>. 287 titles lacking country information (<code>"Not Given"</code>) were excluded from country aggregations.
+          </p>
+        </div>
+        <div class="overview-card">
+          <h3>⚙️ Tech Stack</h3>
+          <p>
+            Implemented in beginner-friendly Python using <code>explode()</code>, <code>value_counts()</code>, and <code>groupby()</code>, visualised with Matplotlib and Chart.js.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. KEY STATISTICS -->
+    <section class="section-block" id="statistics">
+      <div class="section-head">
+        <h2 class="section-title">Key Statistics</h2>
+        <p class="section-sub">Summary numbers computed from actual exploded country data.</p>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiTotalCountries">85</div>
+          <div class="kpi-title">Total Countries Represented</div>
+          <div class="kpi-note">Global international catalog</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiValidTitles">8,503</div>
+          <div class="kpi-title">Titles With Country Info</div>
+          <div class="kpi-note">96.73% catalog coverage</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiTopCountry">United States</div>
+          <div class="kpi-title">Leading Country</div>
+          <div class="kpi-note" id="kpiTopCount">3,240 Titles</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiMissing">287</div>
+          <div class="kpi-title">Excluded 'Not Given' Titles</div>
+          <div class="kpi-note">3.27% omitted safely</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. TOP 10 COUNTRIES RANKING TABLE -->
+    <section class="section-block" id="top10">
+      <div class="section-head">
+        <h2 class="section-title">Top 10 Countries Ranking Table</h2>
+        <p class="section-sub">Leading geographic hubs by available Netflix catalogue titles.</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Country</th>
+              <th>Available Titles</th>
+              <th>Share of Valid Titles</th>
+            </tr>
+          </thead>
+          <tbody id="top10TableBody">
+            <!-- Dynamically populated by script.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4. COUNTRY COMPARISON BAR CHART -->
+    <section class="section-block" id="comparison">
+      <div class="section-head">
+        <h2 class="section-title">Country Comparison Visualization</h2>
+        <p class="section-sub">Interactive chart comparing total catalog titles across the Top 10 countries.</p>
+      </div>
+
+      <div class="chart-card">
+        <h3>Top 10 Countries by Available Titles (Bar Chart)</h3>
+        <div class="chart-container">
+          <canvas id="chartCountries"></canvas>
+        </div>
+        <div class="chart-img-preview">
+          <p style="font-size: 11.5px; color: #888; padding: 6px 10px; background: #181818;">Python Matplotlib Export: <code>output/top_10_countries.png</code></p>
+          <img src="output/top_10_countries.png" alt="Top 10 Countries Chart">
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CONTENT TYPE BY COUNTRY -->
+    <section class="section-block" id="types">
+      <div class="section-head">
+        <h2 class="section-title">Content Format Distribution by Country</h2>
+        <p class="section-sub">Comparing feature Movies vs TV Shows across the Top 10 leading countries.</p>
+      </div>
+
+      <div class="chart-card">
+        <h3>Movies vs TV Shows Grouped Breakdown</h3>
+        <div class="chart-container">
+          <canvas id="chartCountryType"></canvas>
+        </div>
+        <div class="chart-img-preview">
+          <p style="font-size: 11.5px; color: #888; padding: 6px 10px; background: #181818;">Python Matplotlib Export: <code>output/country_type_breakdown.png</code></p>
+          <img src="output/country_type_breakdown.png" alt="Country Type Breakdown">
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. BUSINESS INSIGHTS -->
+    <section class="section-block" id="insights">
+      <div class="section-head">
+        <h2 class="section-title">Business & Geographic Insights</h2>
+        <p class="section-sub">Key strategic conclusions based on actual country analysis.</p>
+      </div>
+
+      <div class="findings-list" id="insightsList">
+        <!-- Dynamically loaded by script.js -->
+      </div>
+    </section>
+
+    <!-- 7. DOWNLOAD REPORTS -->
+    <section class="section-block" id="downloads">
+      <div class="section-head">
+        <h2 class="section-title">Download Country Reports</h2>
+        <p class="section-sub">Download verified CSV tables generated by Python.</p>
+      </div>
+
+      <div class="download-grid">
+        <div class="download-card">
+          <div>
+            <h4>All Countries Summary</h4>
+            <p>Comprehensive CSV listing content counts for every country represented.</p>
+          </div>
+          <button class="btn-primary" id="btnDownloadAllCountries">📥 Download All Countries CSV</button>
+        </div>
+
+        <div class="download-card">
+          <div>
+            <h4>Top 10 Countries Table</h4>
+            <p>Ranked table of the top 10 content hubs on Netflix.</p>
+          </div>
+          <button class="btn-primary" id="btnDownloadTop10">📥 Download Top 10 CSV</button>
+        </div>
+
+        <div class="download-card">
+          <div>
+            <h4>Country vs Type Breakdown</h4>
+            <p>Detailed breakdown of Movies vs TV Shows for top countries.</p>
+          </div>
+          <button class="btn-primary" id="btnDownloadTypeComp">📥 Download Type Breakdown CSV</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <p><b>Netflix Country-Wise Content Analysis Dashboard</b> — Task 3 (Medium)</p>
+    <p>Auspify Data Analysis Using Python Internship • Student: Priya Sharma</p>
+  </footer>
+
+  <!-- Data Script & Frontend Logic -->
+  <script src="reports/country_analysis_results.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

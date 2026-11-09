@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix Release Year Trend Analysis — Task 4 (Medium)</title>
+
+  <!-- Google Fonts & Chart.js -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar">
+    <div class="nav-brand" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+      <div class="logo-text">NETFLIX</div>
+      <div class="logo-sub">RELEASE YEAR TREND ANALYSIS</div>
+    </div>
+
+    <div class="nav-links">
+      <a href="#overview" class="nav-btn">Overview</a>
+      <a href="#statistics" class="nav-btn">Statistics</a>
+      <a href="#trend" class="nav-btn">Yearly Trend</a>
+      <a href="#topyears" class="nav-btn">Top Years</a>
+      <a href="#comparison" class="nav-btn">Movies vs Shows</a>
+      <a href="#findings" class="nav-btn">Findings</a>
+      <a href="#downloads" class="nav-btn">Downloads</a>
+    </div>
+
+    <div class="nav-badge">
+      <span>Task 4 — Medium</span>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO HEADER ==================== -->
+  <header class="hero-header">
+    <span class="hero-tag">AUSPIFY INTERNSHIP • TASK 04</span>
+    <h1 class="hero-title">Netflix Release Year Trend Analysis</h1>
+    <p class="hero-desc">
+      A longitudinal examination tracking how Netflix catalogue content is distributed across original release years (1925 to 2021). Evaluates the 2015–2018 streaming boom and shifts between feature movies and episodic series.
+    </p>
+    <div class="hero-actions">
+      <a href="#trend" class="btn-primary">📈 View Release Trends</a>
+      <a href="#downloads" class="btn-secondary">📥 Download Trend CSVs</a>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTAINER ==================== -->
+  <main class="container">
+
+    <!-- 1. PROJECT OVERVIEW -->
+    <section class="section-block" id="overview">
+      <div class="section-head">
+        <h2 class="section-title">Project Overview</h2>
+        <p class="section-sub">Chronological parameters, definitions, and data methodology.</p>
+      </div>
+
+      <div class="overview-grid">
+        <div class="overview-card">
+          <h3>🎯 Core Objective</h3>
+          <p>
+            Understand how Netflix catalogue titles are distributed chronologically across release years. Identify growth, peak acquisition periods, and shifts between movies and series.
+          </p>
+        </div>
+        <div class="overview-card">
+          <h3>🛡️ Accurate Wording</h3>
+          <p>
+            The <code>release_year</code> column represents the year a title was originally produced or premiered, not necessarily the year it was added to Netflix streaming servers.
+          </p>
+        </div>
+        <div class="overview-card">
+          <h3>⚙️ Tech Stack</h3>
+          <p>
+            Implemented using simple Pandas functions: <code>groupby()</code>, <code>size()</code>, <code>sort_values()</code>, and visualised with Matplotlib and Chart.js.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. KEY STATISTICS -->
+    <section class="section-block" id="statistics">
+      <div class="section-head">
+        <h2 class="section-title">Key Statistics</h2>
+        <p class="section-sub">Chronological span, milestone years, and all-time records.</p>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiTotalTitles">8,790</div>
+          <div class="kpi-title">Total Catalog Titles</div>
+          <div class="kpi-note">100% verified data</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiEarliestYear">1925</div>
+          <div class="kpi-title">Earliest Release Year</div>
+          <div class="kpi-note">Classic film archive</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiLatestYear">2021</div>
+          <div class="kpi-title">Latest Release Year</div>
+          <div class="kpi-note">Contemporary releases</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiYearSpan">97 Years</div>
+          <div class="kpi-title">Historical Time Span</div>
+          <div class="kpi-note">Nearly a century of content</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiPeakYear">2018</div>
+          <div class="kpi-title">All-Time Peak Year</div>
+          <div class="kpi-note" id="kpiPeakCount">1,146 Titles</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. YEARLY TREND ANALYSIS -->
+    <section class="section-block" id="trend">
+      <div class="section-head">
+        <h2 class="section-title">Yearly Content Distribution Trend</h2>
+        <p class="section-sub">Interactive trajectory of titles by release year (1925 to 2021).</p>
+      </div>
+
+      <div class="chart-card">
+        <h3>Distribution of Netflix Titles by Release Year (Line Chart)</h3>
+        <div class="chart-container">
+          <canvas id="chartTrend"></canvas>
+        </div>
+        <div class="chart-img-preview">
+          <p style="font-size: 11.5px; color: #888; padding: 6px 10px; background: #181818;">Python Matplotlib Export: <code>output/yearly_content_trend.png</code></p>
+          <img src="output/yearly_content_trend.png" alt="Yearly Trend Line Chart">
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. TOP 10 RELEASE YEARS -->
+    <section class="section-block" id="topyears">
+      <div class="section-head">
+        <h2 class="section-title">Top 10 Release Years</h2>
+        <p class="section-sub">Ranking table and volume comparison for the top 10 years.</p>
+      </div>
+
+      <div class="charts-grid">
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Release Year</th>
+                <th>Total Titles</th>
+                <th>Share of Catalog</th>
+              </tr>
+            </thead>
+            <tbody id="topYearsTableBody">
+              <!-- Dynamically populated by script.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="chart-card">
+          <h3>Top 10 Release Years (Bar Chart)</h3>
+          <div class="chart-img-preview" style="margin-top: 0;">
+            <img src="output/top_release_years.png" alt="Top Release Years Bar Chart">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. MOVIES VS TV SHOWS TRENDS -->
+    <section class="section-block" id="comparison">
+      <div class="section-head">
+        <h2 class="section-title">Movies vs TV Shows Trend Comparison</h2>
+        <p class="section-sub">Tracking format preferences and episodic content acceleration over time.</p>
+      </div>
+
+      <div class="chart-card">
+        <h3>Comparative Trajectory: Movies vs TV Shows</h3>
+        <div class="chart-container">
+          <canvas id="chartTypeTrend"></canvas>
+        </div>
+        <div class="chart-img-preview">
+          <p style="font-size: 11.5px; color: #888; padding: 6px 10px; background: #181818;">Python Matplotlib Export: <code>output/content_type_year_comparison.png</code></p>
+          <img src="output/content_type_year_comparison.png" alt="Content Type Year Comparison">
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. KEY FINDINGS -->
+    <section class="section-block" id="findings">
+      <div class="section-head">
+        <h2 class="section-title">Key Findings</h2>
+        <p class="section-sub">Data interpretations and business patterns derived from temporal trends.</p>
+      </div>
+
+      <div class="findings-list" id="findingsList">
+        <!-- Dynamically loaded by script.js -->
+      </div>
+    </section>
+
+    <!-- 7. DOWNLOAD REPORTS -->
+    <section class="section-block" id="downloads">
+      <div class="section-head">
+        <h2 class="section-title">Download Trend Reports</h2>
+        <p class="section-sub">Verified CSV outputs ready for analysis or reporting.</p>
+      </div>
+
+      <div class="download-grid">
+        <div class="download-card">
+          <div>
+            <h4>Yearly Content Summary</h4>
+            <p>Chronological table detailing Movie, TV Show, and Total counts per year.</p>
+          </div>
+          <button class="btn-primary" id="btnDownloadYearlySummary">📥 Download Yearly Summary CSV</button>
+        </div>
+
+        <div class="download-card">
+          <div>
+            <h4>Top Release Years</h4>
+            <p>Ranked CSV table of the top 10 release years with the most titles.</p>
+          </div>
+          <button class="btn-primary" id="btnDownloadTopYears">📥 Download Top Years CSV</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <p><b>Netflix Release Year Trend Analysis Dashboard</b> — Task 4 (Medium)</p>
+    <p>Auspify Data Analysis Using Python Internship • Student: Priya Sharma</p>
+  </footer>
+
+  <!-- Data Script & Frontend Logic -->
+  <script src="reports/trend_analysis_results.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

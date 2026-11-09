@@ -1,0 +1,130 @@
+const COUNTRY_ANALYSIS_RESULTS = {
+    "projectName": "Netflix Country-Wise Content Analysis",
+    "taskName": "Task 3 (Medium) \u2013 Auspify Data Analysis Internship",
+    "totalTitles": 8790,
+    "validTitles": 8503,
+    "missingTitles": 287,
+    "totalCountries": 85,
+    "topCountryName": "United States",
+    "topCountryCount": 3240,
+    "top10Countries": [
+        {
+            "rank": 1,
+            "country": "United States",
+            "count": 3240
+        },
+        {
+            "rank": 2,
+            "country": "India",
+            "count": 1057
+        },
+        {
+            "rank": 3,
+            "country": "United Kingdom",
+            "count": 638
+        },
+        {
+            "rank": 4,
+            "country": "Pakistan",
+            "count": 421
+        },
+        {
+            "rank": 5,
+            "country": "Canada",
+            "count": 271
+        },
+        {
+            "rank": 6,
+            "country": "Japan",
+            "count": 259
+        },
+        {
+            "rank": 7,
+            "country": "South Korea",
+            "count": 214
+        },
+        {
+            "rank": 8,
+            "country": "France",
+            "count": 213
+        },
+        {
+            "rank": 9,
+            "country": "Spain",
+            "count": 182
+        },
+        {
+            "rank": 10,
+            "country": "Mexico",
+            "count": 138
+        }
+    ],
+    "countryTypeComparison": [
+        {
+            "country": "United States",
+            "movies": 2395,
+            "tvShows": 845,
+            "total": 3240
+        },
+        {
+            "country": "India",
+            "movies": 976,
+            "tvShows": 81,
+            "total": 1057
+        },
+        {
+            "country": "United Kingdom",
+            "movies": 387,
+            "tvShows": 251,
+            "total": 638
+        },
+        {
+            "country": "Pakistan",
+            "movies": 71,
+            "tvShows": 350,
+            "total": 421
+        },
+        {
+            "country": "Canada",
+            "movies": 187,
+            "tvShows": 84,
+            "total": 271
+        },
+        {
+            "country": "Japan",
+            "movies": 87,
+            "tvShows": 172,
+            "total": 259
+        },
+        {
+            "country": "South Korea",
+            "movies": 49,
+            "tvShows": 165,
+            "total": 214
+        },
+        {
+            "country": "France",
+            "movies": 148,
+            "tvShows": 65,
+            "total": 213
+        },
+        {
+            "country": "Spain",
+            "movies": 129,
+            "tvShows": 53,
+            "total": 182
+        },
+        {
+            "country": "Mexico",
+            "movies": 90,
+            "tvShows": 48,
+            "total": 138
+        }
+    ],
+    "businessInsights": [
+        "The United States holds the largest share of Netflix catalogue titles (3,240 titles), followed by India (1,057 titles) and the United Kingdom (638 titles).",
+        "India is the dominant Asian content contributor with 1,057 titles, consisting predominantly of feature movies over TV shows.",
+        "In contrast, countries like South Korea and Japan exhibit a much stronger balance towards TV Shows and anime series, reflecting localized consumption trends.",
+        "287 titles (3.27%) lacked verified country metadata ('Not Given') and were excluded from country aggregations to prevent distortion."
+    ]
+};

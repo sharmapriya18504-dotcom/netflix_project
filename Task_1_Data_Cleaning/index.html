@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix Data Cleaning & Preparation — Project 01 (Task 1)</title>
+
+  <!-- Google Fonts: Bebas Neue, Outfit, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Project 1 Custom Netflix Styling -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==================== STICKY NAVBAR ==================== -->
+  <nav class="navbar">
+    <div class="nav-brand" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+      <div class="logo-text">NETFLIX</div>
+      <div class="logo-sub">DATA CLEANING</div>
+    </div>
+
+    <div class="nav-links">
+      <button class="nav-btn active" data-target="overview">Overview</button>
+      <button class="nav-btn" data-target="dataset">Dataset KPIs</button>
+      <button class="nav-btn" data-target="workflow">5-Step Process</button>
+      <button class="nav-btn" data-target="quality">Quality Report</button>
+      <button class="nav-btn" data-target="comparison">Before & After</button>
+      <button class="nav-btn" data-target="downloads">Downloads</button>
+      <button class="nav-btn" data-target="viva">Viva Q&A</button>
+    </div>
+
+    <div class="nav-badge">
+      <span>Pandas Verified • 8,790 Records</span>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO HEADER ==================== -->
+  <header class="hero-header">
+    <div class="hero-watermark">NETFLIX</div>
+
+    <div class="hero-content">
+      <div class="hero-tag-row">
+        <span class="tag-project">PROJECT 01</span>
+        <span class="tag-task">TASK 1 — EASY</span>
+        <span class="tag-task" style="border-color: rgba(70,211,105,0.4); color: #46d369; background: rgba(70,211,105,0.12);">AUSPIFY INTERNSHIP</span>
+      </div>
+
+      <h1 class="hero-title">Netflix Data Cleaning & Preparation</h1>
+      <p class="hero-desc">
+        A clean, beginner-friendly data engineering project implemented in Python with Pandas. We inspect the raw Netflix streaming catalog, detect "Not Given" placeholder values, verify duplicate integrity, standardize column formatting, and export analysis-ready deliverables without corrupting or falsifying any real records.
+      </p>
+
+      <div class="hero-cta-group">
+        <button class="btn-primary" id="btnDownloadCleaned">📥 Download Cleaned CSV</button>
+        <a href="#quality" class="btn-secondary">🔍 View Quality Report</a>
+        <a href="#viva" class="btn-secondary">🎓 Evaluation Q&A</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTAINER ==================== -->
+  <main class="container">
+
+    <!-- 1. PROJECT OVERVIEW -->
+    <section class="section-block" id="overview">
+      <div class="section-head">
+        <h2 class="section-title">Project Overview</h2>
+        <p class="section-sub">Fundamental goals, technical boundaries, and data integrity ethics.</p>
+      </div>
+
+      <div class="overview-grid">
+        <div class="overview-card">
+          <div class="card-icon">🎯</div>
+          <h3>Project Objective</h3>
+          <p>
+            Transform raw Netflix catalog metadata (8,790 rows and 10 columns) into an analytics-ready, standardized dataset. Identify real missing data vs textual placeholders like <code>"Not Given"</code>, preserve genuine unique records, and standardize dates and categories.
+          </p>
+        </div>
+
+        <div class="overview-card">
+          <div class="card-icon">⚙️</div>
+          <h3>Technology Stack</h3>
+          <p>
+            Built strictly using simple, standard Python and Pandas. No complex OOP classes, no confusing lambda functions, and no heavy frameworks. Easy for college students to explain and defend in an internship viva.
+          </p>
+          <div class="tech-pills">
+            <span class="tech-pill">Python 3.x</span>
+            <span class="tech-pill">Pandas</span>
+            <span class="tech-pill">NumPy</span>
+            <span class="tech-pill">HTML5</span>
+            <span class="tech-pill">CSS3</span>
+            <span class="tech-pill">Vanilla JavaScript</span>
+          </div>
+        </div>
+
+        <div class="overview-card">
+          <div class="card-icon">🛡️</div>
+          <h3>Data Integrity Principle</h3>
+          <p>
+            Never invent synthetic missing values or fake duplicate removals. The dataset originally has zero standard NaNs; textual placeholders (<code>"Not Given"</code> in director & country) are converted to standard <code>NaN</code> without deleting valuable streaming titles.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. DATASET OVERVIEW (KPIs) -->
+    <section class="section-block" id="dataset">
+      <div class="section-head">
+        <h2 class="section-title">Dataset Overview</h2>
+        <p class="section-sub">Real quantitative statistics computed by <code>cleaning.py</code> from the actual dataset.</p>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiTotalRows">8,790</div>
+          <div class="kpi-title">Total Records</div>
+          <div class="kpi-note">100% of original titles preserved</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiTotalCols">10</div>
+          <div class="kpi-title">Catalog Columns</div>
+          <div class="kpi-note">show_id through listed_in</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiMissingTotal">2,875</div>
+          <div class="kpi-title">Placeholders Handled</div>
+          <div class="kpi-note">"Not Given" converted to NaN</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiExactDuplicates">0</div>
+          <div class="kpi-title">Exact Duplicates</div>
+          <div class="kpi-note">Verified zero redundant rows</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiMoviesCount">6,126</div>
+          <div class="kpi-title">Movie Titles</div>
+          <div class="kpi-note">69.69% of catalog</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiTVCount">2,664</div>
+          <div class="kpi-title">TV Show Titles</div>
+          <div class="kpi-note">30.31% of catalog</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CLEANING WORKFLOW (5 STEPS) -->
+    <section class="section-block" id="workflow">
+      <div class="section-head">
+        <h2 class="section-title">Data Cleaning Workflow</h2>
+        <p class="section-sub">Step-by-step procedural pipeline executed by <code>cleaning.py</code>.</p>
+      </div>
+
+      <div class="process-timeline">
+        <div class="process-step">
+          <div class="step-num">1</div>
+          <div class="step-info">
+            <div class="step-header">
+              <span class="step-name">Step 1: Import Dataset & Libraries</span>
+              <span class="step-status">COMPLETED</span>
+            </div>
+            <p class="step-desc">
+              Imported <code>pandas</code> and loaded <code>data/Dataset(1).csv</code>. Verified exact catalog shape of 8,790 rows and 10 columns using <code>df.shape</code> and <code>df.head()</code>.
+            </p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">2</div>
+          <div class="step-info">
+            <div class="step-header">
+              <span class="step-name">Step 2: Understand Dataset Structure</span>
+              <span class="step-status">COMPLETED</span>
+            </div>
+            <p class="step-desc">
+              Inspected column names, null counts, and data types via <code>df.info()</code>. Generated numerical summary for release years (1925 to 2021) via <code>df.describe()</code>.
+            </p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">3</div>
+          <div class="step-info">
+            <div class="step-header">
+              <span class="step-name">Step 3: Missing Values & Placeholder Detection</span>
+              <span class="step-status">COMPLETED</span>
+            </div>
+            <p class="step-desc">
+              Found 0 standard NaNs. Discovered text placeholders: <b>2,588</b> in <code>director</code> and <b>287</b> in <code>country</code> labeled <code>"Not Given"</code>. Converted them to standard <code>np.nan</code> for valid statistical handling without dropping entire rows.
+            </p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">4</div>
+          <div class="step-info">
+            <div class="step-header">
+              <span class="step-name">Step 4: Check Duplicates & Integrity</span>
+              <span class="step-status">COMPLETED</span>
+            </div>
+            <p class="step-desc">
+              Checked <code>df.duplicated().sum()</code> (0 exact duplicates) and duplicate <code>show_id</code> (0 collisions). All 8,790 rows are genuine individual titles, so zero rows were artificially deleted.
+            </p>
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">5</div>
+          <div class="step-info">
+            <div class="step-header">
+              <span class="step-name">Step 5: Standardization, Dates & Export</span>
+              <span class="step-status">COMPLETED</span>
+            </div>
+            <p class="step-desc">
+              Stripped leading/trailing whitespace across all text columns. Standardized content types strictly to <code>Movie</code> and <code>TV Show</code>. Converted <code>date_added</code> to ISO <code>YYYY-MM-DD</code>. Exported clean CSV, quality report, and summary documentation into <code>output/</code>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. DATA QUALITY REPORT -->
+    <section class="section-block" id="quality">
+      <div class="section-head">
+        <h2 class="section-title">Data Quality Report</h2>
+        <p class="section-sub">Column-by-column breakdown of data types, missing indicators, and placeholder frequencies.</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Column Name</th>
+              <th>Data Type</th>
+              <th>Actual NaN</th>
+              <th>"Not Given" Count</th>
+              <th>Missing %</th>
+              <th>Cleaning Status</th>
+            </tr>
+          </thead>
+          <tbody id="qualityTableBody">
+            <!-- Dynamically populated by script.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. BEFORE AND AFTER COMPARISON -->
+    <section class="section-block" id="comparison">
+      <div class="section-head">
+        <h2 class="section-title">Before & After Comparison</h2>
+        <p class="section-sub">Inspect actual record transformations from the raw input to the standardized output.</p>
+      </div>
+
+      <div class="compare-grid">
+        <!-- Before Card -->
+        <div class="compare-card">
+          <div class="compare-head">
+            <span class="compare-title">Raw Dataset (Original Input)</span>
+            <span class="compare-badge-orig">data/Dataset(1).csv</span>
+          </div>
+          <p style="font-size: 12.5px; color: #999; margin-bottom: 12px;">
+            Contains unformatted dates (e.g. <code>9/25/2021</code>), potential whitespace, and strings masking missing data.
+          </p>
+          <div class="table-wrapper sample-table">
+            <table id="tableOriginal">
+              <!-- Dynamically populated -->
+            </table>
+          </div>
+        </div>
+
+        <!-- After Card -->
+        <div class="compare-card">
+          <div class="compare-head">
+            <span class="compare-title">Cleaned Dataset (Analysis Ready)</span>
+            <span class="compare-badge-clean">output/cleaned_netflix_dataset.csv</span>
+          </div>
+          <p style="font-size: 12.5px; color: #999; margin-bottom: 12px;">
+            Standardized ISO dates (<code>2021-09-25</code>), trimmed whitespace, and proper missing indicators for analytics.
+          </p>
+          <div class="table-wrapper sample-table">
+            <table id="tableCleaned">
+              <!-- Dynamically populated -->
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. FINAL RESULTS & DOWNLOADS -->
+    <section class="section-block" id="downloads">
+      <div class="section-head">
+        <h2 class="section-title">Final Deliverables & Downloads</h2>
+        <p class="section-sub">Download verified cleaned data and documentation generated by Python.</p>
+      </div>
+
+      <div class="download-grid">
+        <div class="download-card">
+          <div>
+            <div class="dl-icon">📁</div>
+            <h4>Cleaned Netflix Dataset</h4>
+            <p>
+              Standardized, stripped, and date-formatted CSV file ready for statistical analysis, Tableau, or Power BI.
+            </p>
+          </div>
+          <button class="dl-btn" id="btnDownloadCleaned">
+            <span>📥 Download Cleaned CSV (1.0 MB)</span>
+          </button>
+        </div>
+
+        <div class="download-card">
+          <div>
+            <div class="dl-icon">📊</div>
+            <h4>Missing Values Report</h4>
+            <p>
+              Detailed CSV table itemizing NaN counts, placeholder frequencies, and percentages for every column.
+            </p>
+          </div>
+          <button class="dl-btn" id="btnDownloadReport">
+            <span>📥 Download Quality Report CSV</span>
+          </button>
+        </div>
+
+        <div class="download-card">
+          <div>
+            <div class="dl-icon">📝</div>
+            <h4>Cleaning Summary Log</h4>
+            <p>
+              Executive text summary detailing rows processed, duplicates verified, transformations applied, and output hashes.
+            </p>
+          </div>
+          <button class="dl-btn" id="btnDownloadSummary">
+            <span>📥 Download Summary (.txt)</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. INTERNSHIP VIVA & EVALUATION Q&A -->
+    <section class="section-block" id="viva">
+      <div class="section-head">
+        <h2 class="section-title">Internship Viva & Evaluation Guide</h2>
+        <p class="section-sub">Key interview questions and clear student-friendly answers for project evaluators.</p>
+      </div>
+
+      <div class="viva-list">
+        <div class="viva-item">
+          <div class="viva-q">Q1: Why did <code>df.isnull().sum()</code> show 0 missing values initially when director and country have missing data?</div>
+          <div class="viva-a">
+            Because the raw dataset uses the text string <code>"Not Given"</code> instead of standard Python <code>NaN</code> or empty cells. Standard Pandas functions treat <code>"Not Given"</code> as a valid text value. We identified this by checking value frequencies and converted <code>"Not Given"</code> into <code>np.nan</code>.
+          </div>
+        </div>
+
+        <div class="viva-item">
+          <div class="viva-q">Q2: Why did you NOT delete rows with missing director or country information?</div>
+          <div class="viva-a">
+            Deleting rows with missing directors would eliminate 2,588 titles (29.44% of the entire library!). Missing a director does not invalidate the title, release year, genre, or duration of a movie or TV show. Dropping them would introduce massive selection bias into future analysis.
+          </div>
+        </div>
+
+        <div class="viva-item">
+          <div class="viva-q">Q3: Were there duplicate records in the dataset, and how did you verify?</div>
+          <div class="viva-a">
+            We verified duplicates using two methods: <code>df.duplicated().sum()</code> for full-row duplicates (result: 0) and <code>df['show_id'].duplicated().sum()</code> for primary key uniqueness (result: 0). Every single row in the dataset represents a distinct content title.
+          </div>
+        </div>
+
+        <div class="viva-item">
+          <div class="viva-q">Q4: Why was <code>date_added</code> converted to datetime format?</div>
+          <div class="viva-a">
+            In the raw CSV, dates were stored as strings like <code>"9/25/2021"</code>. Converting them using <code>pd.to_datetime(df['date_added'])</code> enables chronological sorting, year-over-year additions analysis, and filtering by month and day of week.
+          </div>
+        </div>
+
+        <div class="viva-item">
+          <div class="viva-q">Q5: What are the main deliverables produced by your Python cleaning script?</div>
+          <div class="viva-a">
+            The script generates three production deliverables inside the <code>output/</code> folder: <code>cleaned_netflix_dataset.csv</code>, <code>missing_values_report.csv</code>, and <code>cleaning_summary.txt</code>, plus structured JSON reports for this web dashboard.
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <p><b>Netflix Data Analysis Project</b> — Task 1: Data Cleaning & Preparation</p>
+    <p>Developed with Python 3, Pandas, HTML5, CSS3, and JavaScript • Auspify Internship</p>
+  </footer>
+
+  <!-- Cleaning Results Data (Direct Local Execution) -->
+  <script src="reports/cleaning_results.js"></script>
+  <!-- Frontend Logic -->
+  <script src="script.js"></script>
+</body>
+</html>

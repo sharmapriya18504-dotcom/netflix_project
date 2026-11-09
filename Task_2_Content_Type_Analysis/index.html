@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix Content Type Analysis — Task 2 (Easy)</title>
+
+  <!-- Google Fonts & Chart.js -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar">
+    <div class="nav-brand" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+      <div class="logo-text">NETFLIX</div>
+      <div class="logo-sub">CONTENT TYPE ANALYSIS</div>
+    </div>
+
+    <div class="nav-links">
+      <a href="#overview" class="nav-btn">Overview</a>
+      <a href="#statistics" class="nav-btn">Statistics</a>
+      <a href="#distribution" class="nav-btn">Distribution</a>
+      <a href="#comparison" class="nav-btn">Comparison</a>
+      <a href="#findings" class="nav-btn">Findings</a>
+      <a href="#downloads" class="nav-btn">Downloads</a>
+    </div>
+
+    <div class="nav-badge">
+      <span>Task 2 — Easy</span>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO HEADER ==================== -->
+  <header class="hero-header">
+    <span class="hero-tag">AUSPIFY INTERNSHIP • TASK 02</span>
+    <h1 class="hero-title">Netflix Content Type Analysis</h1>
+    <p class="hero-desc">
+      A comprehensive data analysis examining the volume, proportion, and distribution between feature Movies and multi-season TV Shows across the Netflix catalog.
+    </p>
+    <div class="hero-actions">
+      <a href="#distribution" class="btn-primary">📊 View Charts</a>
+      <a href="#downloads" class="btn-secondary">📥 Download CSV Reports</a>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTAINER ==================== -->
+  <main class="container">
+
+    <!-- 1. PROJECT OVERVIEW -->
+    <section class="section-block" id="overview">
+      <div class="section-head">
+        <h2 class="section-title">Project Overview</h2>
+        <p class="section-sub">Scope, analytical objectives, and data processing methodology.</p>
+      </div>
+
+      <div class="overview-grid">
+        <div class="overview-card">
+          <h3>🎯 Core Objective</h3>
+          <p>
+            Quantify and compare the distribution of standalone Movies versus episodic TV Shows in the Netflix library to understand content strategy and audience entertainment formats.
+          </p>
+        </div>
+        <div class="overview-card">
+          <h3>⚙️ Tech Stack</h3>
+          <p>
+            Implemented in beginner-friendly Python using <code>pandas.Series.value_counts()</code>, Matplotlib for exported graphics, and Chart.js for web visualizations.
+          </p>
+        </div>
+        <div class="overview-card">
+          <h3>📁 Dataset Source</h3>
+          <p>
+            Utilizes verified records from the cleaned Netflix dataset (8,790 catalog titles) without any synthetic or fabricated values.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. KEY STATISTICS -->
+    <section class="section-block" id="statistics">
+      <div class="section-head">
+        <h2 class="section-title">Key Statistics</h2>
+        <p class="section-sub">Computed counts, percentage shares, and format proportions.</p>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiTotal">8,790</div>
+          <div class="kpi-title">Total Catalog Titles</div>
+          <div class="kpi-note">100% verified titles</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiMovies">6,126</div>
+          <div class="kpi-title">Total Movies</div>
+          <div class="kpi-note">Standalone feature films</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiTVShows">2,664</div>
+          <div class="kpi-title">Total TV Shows</div>
+          <div class="kpi-note">Episodic series</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiMoviePct">69.69%</div>
+          <div class="kpi-title">Movie Share</div>
+          <div class="kpi-note">Dominant platform format</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiTVPct">30.31%</div>
+          <div class="kpi-title">TV Show Share</div>
+          <div class="kpi-note">High binge-watch retention</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val" id="kpiRatio">2.30 : 1</div>
+          <div class="kpi-title">Movie to TV Ratio</div>
+          <div class="kpi-note">2.3 movies per show</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CONTENT DISTRIBUTION CHARTS -->
+    <section class="section-block" id="distribution">
+      <div class="section-head">
+        <h2 class="section-title">Content Distribution Visualizations</h2>
+        <p class="section-sub">Interactive web charts alongside Python-generated Matplotlib exports.</p>
+      </div>
+
+      <div class="charts-grid">
+        <!-- Interactive Bar Chart -->
+        <div class="chart-card">
+          <h3>Absolute Content Volume (Bar Chart)</h3>
+          <div class="chart-container">
+            <canvas id="chartBar"></canvas>
+          </div>
+          <div class="chart-img-preview">
+            <p style="font-size: 11.5px; color: #888; padding: 6px 10px; background: #181818;">Python Matplotlib Export: <code>output/content_type_bar_chart.png</code></p>
+            <img src="output/content_type_bar_chart.png" alt="Content Type Bar Chart">
+          </div>
+        </div>
+
+        <!-- Interactive Donut / Pie Chart -->
+        <div class="chart-card">
+          <h3>Percentage Proportion Share (Pie / Donut)</h3>
+          <div class="chart-container">
+            <canvas id="chartPie"></canvas>
+          </div>
+          <div class="chart-img-preview">
+            <p style="font-size: 11.5px; color: #888; padding: 6px 10px; background: #181818;">Python Matplotlib Export: <code>output/content_type_pie_chart.png</code></p>
+            <img src="output/content_type_pie_chart.png" alt="Content Type Pie Chart">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. COMPARISON SECTION -->
+    <section class="section-block" id="comparison">
+      <div class="section-head">
+        <h2 class="section-title">Format Comparison</h2>
+        <p class="section-sub">Detailed comparative metrics between Movies and TV Shows.</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Content Format</th>
+              <th>Total Count</th>
+              <th>Percentage Share</th>
+              <th>Primary Unit</th>
+              <th>Average Consumption Pattern</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b style="color: #fff;">Movie</b></td>
+              <td>6,126</td>
+              <td><span style="color: #ff4d55; font-weight: bold;">69.69%</span></td>
+              <td>Minutes (e.g. 90–120 min)</td>
+              <td>Single-session complete viewing</td>
+            </tr>
+            <tr>
+              <td><b style="color: #fff;">TV Show</b></td>
+              <td>2,664</td>
+              <td><span style="color: #888; font-weight: bold;">30.31%</span></td>
+              <td>Seasons / Episodes</td>
+              <td>Multi-day episodic engagement & user retention</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. KEY FINDINGS -->
+    <section class="section-block" id="findings">
+      <div class="section-head">
+        <h2 class="section-title">Key Findings</h2>
+        <p class="section-sub">Analytical insights drawn directly from real dataset calculations.</p>
+      </div>
+
+      <div class="findings-list" id="findingsList">
+        <!-- Dynamically loaded by script.js -->
+      </div>
+    </section>
+
+    <!-- 6. DOWNLOAD REPORTS -->
+    <section class="section-block" id="downloads">
+      <div class="section-head">
+        <h2 class="section-title">Download Analysis Reports</h2>
+        <p class="section-sub">Verified CSV outputs generated by Python Pandas.</p>
+      </div>
+
+      <div class="download-grid">
+        <div class="download-card">
+          <div>
+            <h4>Content Type Summary</h4>
+            <p>Counts table listing absolute numbers for Movies and TV Shows.</p>
+          </div>
+          <button class="btn-primary" id="btnDownloadSummary">📥 Download Summary CSV</button>
+        </div>
+
+        <div class="download-card">
+          <div>
+            <h4>Content Type Percentages</h4>
+            <p>Percentage share table ready for presentations or documentation.</p>
+          </div>
+          <button class="btn-primary" id="btnDownloadPercentages">📥 Download Percentages CSV</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <p><b>Netflix Content Type Analysis Dashboard</b> — Task 2 (Easy)</p>
+    <p>Auspify Data Analysis Using Python Internship • Student: Priya Sharma</p>
+  </footer>
+
+  <!-- Data Script & Frontend Logic -->
+  <script src="reports/analysis_results.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
