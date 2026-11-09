@@ -24,3 +24,6 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
+# Legacy duplicate results
+results/cleaned_netflix.csv
+

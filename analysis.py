@@ -3,7 +3,7 @@
 # ==============================================================================
 # Student Name: Data Analytics Intern
 # Technology  : Python, Pandas, NumPy, Matplotlib, Seaborn
-# Dataset     : data/Dataset.csv (Original file preserved untouched)
+# Dataset     : data/Dataset(1).csv (Original file preserved untouched)
 # ==============================================================================
 
 import os
@@ -28,7 +28,9 @@ print("TASK 1: DATA LOADING AND UNDERSTANDING")
 print("=" * 60)
 
 # Step 1.1: Load dataset from CSV file
-csv_path = os.path.join("data", "Dataset.csv")
+csv_path = os.path.join("data", "Dataset(1).csv")
+if not os.path.exists(csv_path):
+    csv_path = os.path.join("data", "Dataset.csv")
 print(f"Loading dataset from: {csv_path}")
 df_raw = pd.read_csv(csv_path)
 
@@ -325,7 +327,7 @@ print("=" * 60)
 insights_content = f"""======================================================================
 NETFLIX DATA ANALYSIS - BUSINESS INSIGHTS REPORT
 ======================================================================
-Analyzed Dataset : data/Dataset.csv
+Analyzed Dataset : data/Dataset(1).csv
 Total Titles     : {final_rows:,} records
 
 1. Content Type Breakdown (Movies vs. TV Shows):

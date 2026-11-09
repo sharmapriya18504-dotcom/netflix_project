@@ -28,8 +28,7 @@ Following strict data ethics and industry standards:
 Netflix_Data_Cleaning/
 │
 ├── data/
-│   ├── Dataset(1).csv               # Original raw dataset (8,790 rows, 10 columns)
-│   └── Dataset.csv                  # Dataset alias for compatibility
+│   └── Dataset(1).csv               # Original raw dataset (8,790 rows, 10 columns)
 │
 ├── output/
 │   ├── cleaned_netflix_dataset.csv  # Standardized, cleaned dataset ready for analysis
