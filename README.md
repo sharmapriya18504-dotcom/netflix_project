@@ -150,13 +150,14 @@ Auspify_Data_Analysis_Internship/
 ## 5. Screenshots of Completed Tasks
 
 ### Task 1 – Netflix Data Cleaning & Preparation
-- **Web Dashboard**: Open `Task_1_Data_Cleaning/index.html` in your browser.
-- To add your dashboard screenshot: Take a screenshot (`Windows + Shift + S`) and save it as:
+- **Missing & Placeholder Values Analysis (Actual Python Matplotlib Output)**:  
+  ![Task 1 Missing Values Report](screenshots/Task_1/missing_values_report.png)
+
+- **Data Cleaning & Quality Audit Summary (Actual Python Matplotlib Output)**:  
+  ![Task 1 Data Cleaning Audit Summary](screenshots/Task_1/data_cleaning_audit_summary.png)
+
+- **Web Dashboard Screenshot Instructions**: Open `Task_1_Data_Cleaning/index.html` in your browser and save your screenshot as:  
   `screenshots/Task_1/data_cleaning_dashboard.png`
-- Markdown reference:
-  ```markdown
-  ![Task 1 Dashboard](screenshots/Task_1/data_cleaning_dashboard.png)
-  ```
 
 ### Task 2 – Content Type Analysis Dashboard
 - **Content Type Bar Chart (Actual Python Matplotlib Output)**:  
