@@ -2,7 +2,7 @@ const CLEANING_RESULTS = {
   "projectName": "Netflix Data Cleaning & Preparation",
   "taskName": "Task 1 (Easy) \u2013 Auspify Data Analysis Internship",
   "author": "Priya Sharma",
-  "datasetSource": "data\\Dataset(1).csv",
+  "datasetSource": "data\\Dataset.csv",
   "originalRows": 8790,
   "originalCols": 10,
   "cleanedRows": 8790,
