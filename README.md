@@ -71,6 +71,12 @@ Auspify_Data_Analysis_Internship/
 ├── data/
 │   └── Dataset.csv
 │
+├── screenshots/
+│   ├── Task_1/
+│   ├── Task_2/
+│   ├── Task_3/
+│   └── Task_4/
+│
 ├── Task_1_Data_Cleaning/
 │   ├── data/
 │   │   └── Dataset.csv
@@ -141,7 +147,53 @@ Auspify_Data_Analysis_Internship/
 
 ---
 
-## 5. How to Run
+## 5. Screenshots of Completed Tasks
+
+### Task 1 – Netflix Data Cleaning & Preparation
+- **Web Dashboard**: Open `Task_1_Data_Cleaning/index.html` in your browser.
+- To add your dashboard screenshot: Take a screenshot (`Windows + Shift + S`) and save it as:
+  `screenshots/Task_1/data_cleaning_dashboard.png`
+- Markdown reference:
+  ```markdown
+  ![Task 1 Dashboard](screenshots/Task_1/data_cleaning_dashboard.png)
+  ```
+
+### Task 2 – Content Type Analysis Dashboard
+- **Content Type Bar Chart (Actual Python Matplotlib Output)**:  
+  ![Task 2 Bar Chart](screenshots/Task_2/content_type_bar_chart.png)
+
+- **Content Type Pie Chart (Actual Python Matplotlib Output)**:  
+  ![Task 2 Pie Chart](screenshots/Task_2/content_type_pie_chart.png)
+
+- **Web Dashboard Screenshot Instructions**: Open `Task_2_Content_Type_Analysis/index.html` in your browser and save your screenshot as:  
+  `screenshots/Task_2/content_type_dashboard.png`
+
+### Task 3 – Country-Wise Netflix Content Analysis
+- **Top 10 Countries by Content Volume (Actual Python Matplotlib Output)**:  
+  ![Task 3 Top 10 Countries](screenshots/Task_3/top_10_countries.png)
+
+- **Movies vs TV Shows by Country (Actual Python Matplotlib Output)**:  
+  ![Task 3 Country Type Breakdown](screenshots/Task_3/country_type_breakdown.png)
+
+- **Web Dashboard Screenshot Instructions**: Open `Task_3_Country_Wise_Analysis/index.html` in your browser and save your screenshot as:  
+  `screenshots/Task_3/country_analysis_dashboard.png`
+
+### Task 4 – Trend Analysis by Release Year
+- **Yearly Content Distribution Trend (Actual Python Matplotlib Output)**:  
+  ![Task 4 Yearly Content Trend](screenshots/Task_4/yearly_content_trend.png)
+
+- **Top 10 Release Years Bar Chart (Actual Python Matplotlib Output)**:  
+  ![Task 4 Top Release Years](screenshots/Task_4/top_release_years.png)
+
+- **Movies vs TV Shows Historical Trajectory (Actual Python Matplotlib Output)**:  
+  ![Task 4 Content Type Year Comparison](screenshots/Task_4/content_type_year_comparison.png)
+
+- **Web Dashboard Screenshot Instructions**: Open `Task_4_Release_Year_Trend_Analysis/index.html` in your browser and save your screenshot as:  
+  `screenshots/Task_4/release_year_dashboard.png`
+
+---
+
+## 6. How to Run
 
 ### Step 1: Install Required Libraries
 Open your terminal in the project folder and run:
@@ -192,7 +244,7 @@ You can open any dashboard by:
 
 ---
 
-## 6. What I Learned
+## 7. What I Learned
 
 - How to inspect and understand a real dataset using `head()`, `info()`, and `describe()`.
 - How to detect real missing information when it is hidden as text strings like "Not Given".
@@ -204,7 +256,7 @@ You can open any dashboard by:
 
 ---
 
-## 7. Conclusion
+## 8. Conclusion
 
 During this internship at Auspify Technologies, I successfully completed all four data analysis tasks using Python and Pandas. 
 
